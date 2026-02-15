@@ -1,18 +1,15 @@
-docker compose up -d nginx
-docker compose run --rm certbot certonly \
-  --webroot \
-  --webroot-path=/var/www/certbot \
-  --email you@email.com \
-  --agree-tos \
-  --no-eff-email \
-  -d cogniva.insamo.id \
-  -d apicogniva.insamo.id \
-  -d app.insamo.id \
-  -d apiapp.insamo.id
-
-  docker compose restart nginx
+docker run --rm -it \
+  -v $(pwd)/certs:/etc/letsencrypt \
+  -v $(pwd)/certbot/www:/var/www/certbot \
+  certbot/certbot certonly \
+  --webroot -w /var/www/certbot \
+  -d app.insamo.id -d apiapp.insamo.id -d cogniva.insamo.id \
+  --email your-email@example.com \
+  --agree-tos --non-interactive
 
 
-  docker exec nginx nginx -t
-docker logs certbot
-curl -I https://yourdomain.com
+
+curl -I https://app.insamo.id
+curl -I https://apiapp.insamo.id
+curl -I https://cogniva.insamo.id
+curl -I https://IP_ADDRESS  # harus tampil "NGINX GATEWAY OK"

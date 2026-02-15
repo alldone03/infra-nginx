@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: global-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+    networks:
+      - web
+
+  certbot:
+    image: certbot/certbot
+    container_name: global-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: >
+      sh -c "trap exit TERM;
+             while :; do
+               certbot renew;
+               sleep 12h;
+             done"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

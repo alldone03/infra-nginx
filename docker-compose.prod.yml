@@ -4,6 +4,7 @@ services:
   nginx-gateway:
     image: nginx:alpine
     container_name: nginx-gateway
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
@@ -20,6 +21,7 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
+    restart: unless-stopped
     volumes:
       - ./certs:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot

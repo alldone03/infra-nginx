@@ -29,16 +29,14 @@ Jalankan perintah ini satu per satu untuk setiap domain agar folder sertifikatny
 
 ```bash
 # Domain 1
-docker run --rm -it -v $(pwd)/certs:/etc/letsencrypt -v $(pwd)/certbot/www:/var/www/certbot \
-  certbot/certbot certonly --webroot -w /var/www/certbot -d app.insamo.id --email aldan@example.com --agree-tos
+docker run --rm -it -v $(pwd)/certs:/etc/letsencrypt -v $(pwd)/certbot/www:/var/www/certbot certbot/certbot certonly --webroot -w /var/www/certbot -d app.insamo.id --email aldanarsenal@gmail.com --agree-tos
 
 # Domain 2
-docker run --rm -it -v $(pwd)/certs:/etc/letsencrypt -v $(pwd)/certbot/www:/var/www/certbot \
-  certbot/certbot certonly --webroot -w /var/www/certbot -d apiapp.insamo.id --email aldan@example.com --agree-tos
+docker run --rm -it -v $(pwd)/certs:/etc/letsencrypt -v $(pwd)/certbot/www:/var/www/certbot certbot/certbot certonly --webroot -w /var/www/certbot -d apiapp.insamo.id --email aldanarsenal@gmail.com --agree-tos
 
 # Domain 3
 docker run --rm -it -v $(pwd)/certs:/etc/letsencrypt -v $(pwd)/certbot/www:/var/www/certbot \
-  certbot/certbot certonly --webroot -w /var/www/certbot -d cogniva.insamo.id --email aldan@example.com --agree-tos
+  certbot/certbot certonly --webroot -w /var/www/certbot -d cogniva.insamo.id --email aldanarsenal@gmail.com --agree-tos
 ```
 
 *Catatan: Ganti email dengan email aktif Anda.*

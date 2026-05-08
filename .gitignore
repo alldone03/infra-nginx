@@ -1,0 +1,10 @@
+# Ignore local configuration and secrets
+.env
+wireguard-config/
+certs/
+certbot/
+certs;C/
+*.i
+*.p
+nginx.conf.p
+nginx.conf.i
